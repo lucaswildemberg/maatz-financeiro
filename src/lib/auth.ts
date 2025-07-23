@@ -18,7 +18,7 @@ export async function createUser(email: string, password: string, name: string) 
   const hashedPassword = await hashPassword(password);
   
   try {
-    const [user] = await db.insert(users).values({
+    const [user] = await (db as any).insert(users).values({
       email,
       password: hashedPassword,
       name,
@@ -34,7 +34,7 @@ export async function createUser(email: string, password: string, name: string) 
 }
 
 export async function login(email: string, password: string) {
-  const [user] = await db.select().from(users).where(eq(users.email, email));
+  const [user] = await (db as any).select().from(users).where(eq(users.email, email));
   
   if (!user) {
     return { success: false, error: 'Invalid credentials' };
@@ -71,7 +71,7 @@ export async function getCurrentUser() {
     return null;
   }
   
-  const [user] = await db.select({
+  const [user] = await (db as any).select({
     id: users.id,
     email: users.email,
     name: users.name,

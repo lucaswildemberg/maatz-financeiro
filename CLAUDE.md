@@ -1,0 +1,1 @@
+- Sempre que fizer alguma mudança suba para o git
