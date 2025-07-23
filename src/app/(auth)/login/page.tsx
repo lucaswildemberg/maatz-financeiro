@@ -38,7 +38,7 @@ export default function LoginPage() {
 
       router.push("/");
       router.refresh();
-    } catch (error) {
+    } catch {
       setError("Erro ao conectar com o servidor");
     } finally {
       setIsLoading(false);
